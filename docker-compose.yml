@@ -1,0 +1,17 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:14
+    networks:
+      - slow
+    ports:
+      - '5434:5432'
+    restart: always
+    environment:
+      POSTGRES_USER: slow
+      POSTGRES_PASSWORD: slow
+    command: ['postgres', '-c', 'log_statement=all']
+
+networks:
+  slow:
+    name: slow
